@@ -14,7 +14,7 @@ const PaymentPage = () => {
 
     useEffect(() => {
         if (!user) {
-            navigate('/'); // Redirect to homepage if user is not logged in
+            navigate('/payment'); // Redirect to homepage if user is not logged in
         }
     }, [navigate, user]);
 
