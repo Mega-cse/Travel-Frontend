@@ -51,7 +51,10 @@ const BookingForm = () => {
             console.log('Booking response:', response.data);
             setSuccess("Booking created successfully!");
             window.alert("Successfully booked!");
-            navigate('/payment', { state: { formData, details } });
+            setTimeout(() => {
+                navigate('/payment', { state: { formData, details } });
+            }, 1000); // 1 second delay
+            
         } catch (error) {
             console.error('Error response:', error.response);
             const errorMessage = error.response?.data?.message || error.message || "An error occurred.";
