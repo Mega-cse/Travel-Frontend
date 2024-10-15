@@ -34,8 +34,8 @@ function App() {
           <Route path="/destination/:destinationName" element={<DestinationDetails />} />
           
           {/* Protected Routes */}
-          <Route path="/booking" element={<ProtectedRoute element={<BookingForm />} />} />
-          <Route path="/payment" element={<ProtectedRoute element={<PaymentPage />} />} />
+          <Route path="/booking" element={<BookingForm />}  />
+          <Route path="/payment" element={<PaymentPage />}  />
           <Route path="/booking-success" element={<ProtectedRoute element={<BookingSuccess />} />} />
           <Route path='/profile/:id' element={<ProtectedRoute element={<Profile />} />} />
 
