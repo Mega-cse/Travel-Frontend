@@ -34,6 +34,7 @@ const BookingForm = () => {
         setSuccess("Booking created successfully!");
         window.alert("Successfully booked!");
         setTimeout(() => {
+            console.log("Navigating to payment with state:", { formData, details });
             navigate('/payment', { state: { formData, details } });
         }, 1000); // Delay for user feedback
     };
