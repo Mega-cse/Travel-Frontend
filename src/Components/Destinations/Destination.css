@@ -1,0 +1,81 @@
+.destination-container {
+  width: 80%;
+  margin: 40px auto;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.search-input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+}
+
+.destination-title {
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  margin: 20px 0;
+}
+
+.destination-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.destination-card {
+  width: 30%;
+  margin: 20px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s;
+}
+
+.destination-card:hover {
+  transform: scale(1.05); /* Scale effect on hover */
+}
+
+.destination-image {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.destination-name {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.view-button {
+  background-color: #4CAF50;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .destination-card {
+      width: 90%; /* Full width on smaller screens */
+      margin: 10px auto; /* Centering the card */
+  }
+}
+
+@media (max-width: 480px) {
+  .destination-title {
+      font-size: 20px; /* Slightly smaller title on very small screens */
+  }
+
+  .search-input {
+      padding: 8px; /* Smaller padding */
+  }
+}

@@ -1,0 +1,126 @@
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.toggle-button {
+    display: none; /* Hide by default, will show in responsive */
+    cursor: pointer;
+    font-size: 24px;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+}
+
+.brand img {
+    width: 150px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+.nav-list {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 10px;
+    flex: 1;
+    justify-content: center;
+}
+
+.link {
+    text-decoration: none;
+    color: black;
+    font-size: 18px;
+    padding: 8px 16px;
+    border-radius: 8px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.link:hover {
+    background-color: #ddd; /* Change to your desired hover color */
+    color: #000; /* Change text color on hover if needed */
+}
+
+.login-container {
+    display: flex;
+    align-items: center;
+}
+
+.login-button {
+    background-color: brown;
+    color: white;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 8px;
+    transition: background-color 0.3s;
+}
+
+.login-button:hover {
+    background-color: darkred; /* Change to your desired hover color */
+}
+
+.dropdown {
+    position: relative;
+}
+
+.dropdown-content {
+    position: absolute;
+    background: white;
+    border: 1px solid #ddd;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown-link {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: black;
+}
+
+.logout-button {
+    display: block;
+    padding: 10px;
+    width: 100%;
+    border: none;
+    background: none;
+    color: black;
+    text-align: left;
+    cursor: pointer;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .toggle-button {
+        display: block; /* Show the toggle button in responsive mode */
+    }
+
+    .nav-list {
+        flex-direction: column;
+        position: absolute;
+        background-color: white;
+        top: 60px;
+        right: 0;
+        width: 100%;
+        display: none; /* Initially hidden */
+    }
+
+    .nav-list.show {
+        display: flex; /* Show when toggled */
+    }
+
+    .link {
+        padding: 10px;
+        width: 100%;
+        text-align: center;
+    }
+}

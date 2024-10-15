@@ -1,0 +1,76 @@
+.booking-container {
+    display: flex;
+    flex-direction: row;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.image-section {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.image-section img {
+    max-width: 200%;
+    height: 50%;
+    border-radius: 8px; /* Optional: for rounded corners */
+}
+
+.form-section {
+    flex: 1;
+    padding: 20px;
+    background: #f9f9f9; /* Light background for contrast */
+    border-radius: 8px; /* Optional: for rounded corners */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Optional: subtle shadow */
+}
+
+.form-section h2 {
+    margin-bottom: 20px; /* Space below the heading */
+}
+
+.form-section div {
+    margin-bottom: 15px; /* Space between form fields */
+}
+
+label {
+    display: block; /* Makes labels occupy full width */
+    margin-bottom: 5px; /* Space between label and input */
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="date"] {
+    width: 100%; /* Full width input fields */
+    padding: 10px; /* Padding inside input boxes */
+    border: 1px solid #ccc; /* Border color */
+    border-radius: 4px; /* Rounded corners for inputs */
+    box-sizing: border-box; /* Include padding and border in width */
+}
+
+.error-message {
+    color: red;
+}
+
+.success-message {
+    color: green;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .booking-container {
+        flex-direction: column;
+    }
+
+    .image-section, .form-section {
+        width: 100%;
+        padding: 0;
+    }
+
+    .form-section {
+        margin-top: 20px; /* Add spacing between image and form */
+    }
+}

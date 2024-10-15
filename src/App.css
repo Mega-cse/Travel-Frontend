@@ -1,0 +1,29 @@
+/* DROPDOWN */
+.search-container {
+  display: flex;  
+  align-items: center;
+}
+
+.search-dropdown,
+.search-input,
+.search-button {
+  padding: 20px; 
+  font-size: 14px; }
+
+.search-dropdown {
+  flex: 1;
+  max-width: 250px; 
+}
+
+.search-input {
+  flex: 1; 
+  max-width: 250px; 
+}
+
+.search-button {
+  background-color:brown;
+  color: white; 
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+}
