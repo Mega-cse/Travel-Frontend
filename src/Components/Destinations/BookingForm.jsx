@@ -23,10 +23,19 @@ const BookingForm = () => {
 
     const [error, setError] = useState(null);
     const [success, setSuccess] = useState(null);
+    const [loading, setLoading] = useState(false); // Loading state
 
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
+    };
+
+    const handleBookingSuccess = () => {
+        setSuccess("Booking created successfully!");
+        window.alert("Successfully booked!");
+        setTimeout(() => {
+            navigate('/payment', { state: { formData, details } });
+        }, 1000); // Delay for user feedback
     };
 
     const handleSubmit = async (event) => {
@@ -36,6 +45,8 @@ const BookingForm = () => {
             setError("No token found. Please log in again.");
             return;
         }
+
+        setLoading(true); // Start loading
 
         try {
             const response = await axios.post('https://travelworld-backend-6kcs.onrender.com/api/book/create', {
@@ -49,16 +60,18 @@ const BookingForm = () => {
             });
 
             console.log('Booking response:', response.data);
-            setSuccess("Booking created successfully!");
-            window.alert("Successfully booked!");
-            setTimeout(() => {
-                navigate('/payment', { state: { formData, details } });
-            }, 1000); // 1 second delay
             
+            if (response.data.success) { // Assuming response has a success flag
+                handleBookingSuccess();
+            } else {
+                setError("Booking failed. Please try again.");
+            }
         } catch (error) {
             console.error('Error response:', error.response);
             const errorMessage = error.response?.data?.message || error.message || "An error occurred.";
             setError(errorMessage);
+        } finally {
+            setLoading(false); // Stop loading
         }
     };
 
@@ -71,6 +84,7 @@ const BookingForm = () => {
                 <h2>Booking Form</h2>
                 {error && <p className="error-message">{error}</p>}
                 {success && <p className="success-message">{success}</p>}
+                {loading && <p className="loading-message">Processing your booking...</p>}
                 <form onSubmit={handleSubmit}>
                     <div>
                         <label>Name:</label>
@@ -97,25 +111,25 @@ const BookingForm = () => {
                         <input type="text" name="bookingName" value={formData.bookingName} readOnly />
                     </div>
                     <div>
-                        <label>Price:</label> {/* Added Price field */}
+                        <label>Price:</label>
                         <input type="text" name="price" value={formData.price} readOnly />
                     </div>
                     <button
                         type="submit"
+                        disabled={loading} // Disable while loading
                         style={{
-                            backgroundColor: '#4CAF50', // Green background
-                            color: '#fff', // White text
-                            padding: '10px 20px', // Padding
-                            border: 'none', // No border
-                            borderRadius: '5px', // Rounded corners
-                            cursor: 'pointer', // Pointer cursor on hover
-                            fontSize: '16px', // Font size
-                            marginTop: '10px' // Space above
+                            backgroundColor: loading ? '#ccc' : '#4CAF50', // Grey if loading
+                            color: '#fff',
+                            padding: '10px 20px',
+                            border: 'none',
+                            borderRadius: '5px',
+                            cursor: loading ? 'not-allowed' : 'pointer',
+                            fontSize: '16px',
+                            marginTop: '10px'
                         }}
                     >
-                        Confirm Booking
+                        {loading ? 'Confirming...' : 'Confirm Booking'}
                     </button>
-
                 </form>
             </div>
         </div>
