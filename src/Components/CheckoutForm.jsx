@@ -34,23 +34,42 @@ const CheckoutForm = ({ formData, details }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} style={{ width: '100%', maxWidth: '400px', margin: '0 auto' }}>
-      <div style={{ marginBottom: '20px' }}>
+    <form onSubmit={handleSubmit} style={formStyles.container}>
+      <div style={formStyles.cardElementContainer}>
         <CardElement />
       </div>
-      <button type="submit" disabled={!stripe || loading} style={{
-        width: '100%',
-        padding: '10px',
-        borderRadius: '5px',
-        border: 'none',
-        backgroundColor: '#007bff',
-        color: '#fff',
-        cursor: 'pointer'
-      }}>
+      <button type="submit" disabled={!stripe || loading} style={formStyles.button}>
         {loading ? 'Processing...' : 'Pay'}
       </button>
     </form>
   );
+};
+
+const formStyles = {
+  container: {
+    width: '100%',
+    maxWidth: '400px',
+    margin: '0 auto',
+    padding: '20px',
+    boxSizing: 'border-box',
+  },
+  cardElementContainer: {
+    marginBottom: '20px',
+    padding: '10px',
+    border: '1px solid #ddd',
+    borderRadius: '5px',
+  },
+  button: {
+    width: '100%',
+    padding: '15px',
+    borderRadius: '5px',
+    border: 'none',
+    backgroundColor: '#007bff',
+    color: '#fff',
+    cursor: 'pointer',
+    fontSize: '16px', // Increased font size for better readability
+    transition: 'background-color 0.3s',
+  },
 };
 
 export default CheckoutForm;
