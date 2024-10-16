@@ -23,23 +23,25 @@ const PaymentPage = () => {
 
 const styles = {
     container: {
-        width: '90%', // Responsive width
-        maxWidth: '600px', // Max width for larger screens
+        maxWidth: '600px',
         margin: '20px auto',
-        padding: '40px',
+        padding: '20px',
         borderRadius: '10px',
         border: '1px solid #ddd',
         backgroundColor: '#f9f9f9',
         boxShadow: '0 2px 10px rgba(0, 0, 0, 0.1)',
         boxSizing: 'border-box',
+        width: '90%', // Make the container responsive
     },
     header: {
         textAlign: 'center',
-        fontSize: '24px', // Larger font for better visibility
+        fontSize: '24px',
+        marginBottom: '10px',
     },
     priceText: {
         textAlign: 'center',
         fontSize: '18px',
+        marginBottom: '20px',
     },
 };
 

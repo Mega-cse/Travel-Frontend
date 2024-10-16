@@ -38,7 +38,7 @@ function App() {
           <Route path="/payment" element={<ProtectedRoute element={<PaymentPage />}  />}/>
           <Route path="/booking-success" element={<ProtectedRoute element={<BookingSuccess />} />} />
           <Route path='/profile/:id' element={<ProtectedRoute element={<Profile />} />} />\
-          <Route path="/my-bookings" element={<ProtectedRoute element={<MyBookings/>}  />}/>
+          <Route path="/my-bookings"  element={<MyBookings/>}  />
           <Route path="/services" element={<ServicesList />} />
           <Route path="/register" element={<Register />} />
         </Routes>
