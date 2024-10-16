@@ -56,6 +56,7 @@ const Navbar = () => {
                         {dropdownOpen && (
                             <div className="dropdown-content">
                                 <Link to={`/profile/${user.id}`} className="dropdown-link">Profile</Link>
+                                <Link to="/my-bookings" className="dropdown-link">My Bookings</Link> {/* New link added here */}
                                 <button onClick={handleLogout} className="logout-button">Logout</button>
                             </div>
                         )}

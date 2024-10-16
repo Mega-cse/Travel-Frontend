@@ -17,6 +17,7 @@ import ResetPassword from './Components/ResetPassword';
 import { UserProvider } from './Components/UserContext'; // Import UserProvider
 import Profile from './Components/Profile';
 import ProtectedRoute from './Components/ProtectedRoute'; // Import ProtectedRoute
+import MyBookings from './Components/Destinations/MyBookings';
 
 function App() {
   return (
@@ -36,7 +37,8 @@ function App() {
           <Route path="/booking" element={<ProtectedRoute element={<BookingForm />}  />}/>
           <Route path="/payment" element={<ProtectedRoute element={<PaymentPage />}  />}/>
           <Route path="/booking-success" element={<ProtectedRoute element={<BookingSuccess />} />} />
-          <Route path='/profile/:id' element={<ProtectedRoute element={<Profile />} />} />
+          <Route path='/profile/:id' element={<ProtectedRoute element={<Profile />} />} />\
+          <Route path="/my-bookings" element={<ProtectedRoute element={<MyBookings/>}  />}/>
           <Route path="/services" element={<ServicesList />} />
           <Route path="/register" element={<Register />} />
         </Routes>

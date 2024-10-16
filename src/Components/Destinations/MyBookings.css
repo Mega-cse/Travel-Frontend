@@ -1,0 +1,26 @@
+.user-bookings {
+    padding: 20px;
+    max-width: 600px;
+    margin: 0 auto;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.user-bookings h2 {
+    text-align: center;
+}
+
+.user-bookings ul {
+    list-style: none;
+    padding: 0;
+}
+
+.user-bookings li {
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0;
+}
+
+.user-bookings li:last-child {
+    border-bottom: none;
+}

@@ -18,12 +18,12 @@ const BookingForm = () => {
         date: '',
         type: type || '',
         bookingName: details?.name || '',
-        price: details?.price || '', // Added price
+        price: details?.price || '',
     });
 
     const [error, setError] = useState(null);
     const [success, setSuccess] = useState(null);
-    const [loading, setLoading] = useState(false); // Loading state
+    const [loading, setLoading] = useState(false);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -34,8 +34,8 @@ const BookingForm = () => {
         setSuccess("Booking created successfully!");
         window.alert("Successfully booked!");
         setTimeout(() => {
-            navigate('/payment', { state: { formData, details } });
-        }, 1000); // Delay for user feedback
+            navigate('/booking-success', { state: { formData, details } }); // Pass state to success page
+        }, 1000);
     };
 
     const handleSubmit = async (event) => {
@@ -46,7 +46,7 @@ const BookingForm = () => {
             return;
         }
 
-        setLoading(true); // Start loading
+        setLoading(true);
 
         try {
             const response = await axios.post('https://travelworld-backend-6kcs.onrender.com/api/book/create', {
@@ -68,7 +68,7 @@ const BookingForm = () => {
             const errorMessage = error.response?.data?.message || error.message || "An error occurred.";
             setError(errorMessage);
         } finally {
-            setLoading(false); // Stop loading
+            setLoading(false);
         }
     };
 
@@ -83,22 +83,18 @@ const BookingForm = () => {
                 {success && <p className="success-message">{success}</p>}
                 {loading && <p className="loading-message">Processing your booking...</p>}
                 <form onSubmit={handleSubmit}>
-                    <div>
-                        <label>Name:</label>
-                        <input type="text" name="name" value={formData.name} onChange={handleChange} required />
-                    </div>
-                    <div>
-                        <label>Email:</label>
-                        <input type="email" name="email" value={formData.email} onChange={handleChange} required />
-                    </div>
-                    <div>
-                        <label>Phone:</label>
-                        <input type="tel" name="phone" value={formData.phone} onChange={handleChange} required />
-                    </div>
-                    <div>
-                        <label>Booking Date:</label>
-                        <input type="date" name="date" value={formData.date} onChange={handleChange} required />
-                    </div>
+                    {['name', 'email', 'phone', 'date'].map((field) => (
+                        <div key={field}>
+                            <label>{field.charAt(0).toUpperCase() + field.slice(1)}:</label>
+                            <input
+                                type={field === 'date' ? 'date' : field === 'email' ? 'email' : 'text'}
+                                name={field}
+                                value={formData[field]}
+                                onChange={handleChange}
+                                required
+                            />
+                        </div>
+                    ))}
                     <div>
                         <label>Type:</label>
                         <input type="text" name="type" value={formData.type} readOnly />
@@ -113,9 +109,9 @@ const BookingForm = () => {
                     </div>
                     <button
                         type="submit"
-                        disabled={loading} // Disable while loading
+                        disabled={loading}
                         style={{
-                            backgroundColor: loading ? '#ccc' : '#4CAF50', // Grey if loading
+                            backgroundColor: loading ? '#ccc' : '#4CAF50',
                             color: '#fff',
                             padding: '10px 20px',
                             border: 'none',

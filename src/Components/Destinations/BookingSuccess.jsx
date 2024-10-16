@@ -5,15 +5,15 @@ const successImageUrl = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT
 
 const BookingSuccess = () => {
   const { state } = useLocation();
-  const navigate = useNavigate(); // Hook for navigation
+  const navigate = useNavigate();
   const { formData } = state || {};
   const details = state?.details || {};
 
   const containerStyle = {
     display: 'flex',
-    flexDirection: 'row',
+    flexDirection: 'column',
     alignItems: 'center',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     width: '90%',
     maxWidth: '800px',
     margin: '20px auto',
@@ -22,49 +22,35 @@ const BookingSuccess = () => {
     border: '1px solid #ddd',
     backgroundColor: '#f9f9f9',
     boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
-    animation: 'fadeIn 1s forwards, bounceIn 0.5s forwards',
-    textAlign: 'left',
+    textAlign: 'center',
   };
 
   const imageStyle = {
-    flex: '1',
-    maxWidth: '300px',
-    marginRight: '20px',
+    maxWidth: '100%',
+    height: 'auto',
     borderRadius: '10px',
-    overflow: 'hidden',
-  };
-
-  const detailsStyle = {
-    flex: '2',
-  };
-
-  const headingStyle = {
-    margin: '0 0 10px',
+    marginBottom: '20px',
   };
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      navigate('/'); // Redirect to the header page after 6 seconds
+      navigate('/'); // Redirect to the home page after 6 seconds
     }, 6000);
     return () => clearTimeout(timer); // Cleanup the timer on unmount
   }, [navigate]);
 
   return (
     <div style={containerStyle}>
-      <div style={imageStyle}>
-        <img src={successImageUrl} alt="Success" style={{ width: '100%', height: 'auto' }} />
-      </div>
-      <div style={detailsStyle}>
-        <h1 style={headingStyle}>Booking Successful!!!</h1>
-        <p>Thank you for your booking.</p>
-        <p><strong>Booking Details:</strong></p>
-        <p><strong>Name:</strong> {formData?.name}</p>
-        <p><strong>Email:</strong> {formData?.email}</p>
-        <p><strong>Phone:</strong> {formData?.phone}</p>
-        <p><strong>Date:</strong> {formData?.date}</p>
-        <p><strong>Booking Name:</strong> {details?.name}</p>
-        <p><strong>Total Price:</strong> {details?.price}</p>
-      </div>
+      <img src={successImageUrl} alt="Success" style={imageStyle} />
+      <h1>Booking Successful!!!</h1>
+      <p>Thank you for your booking.</p>
+      <p><strong>Booking Details:</strong></p>
+      <p><strong>Name:</strong> {formData?.name}</p>
+      <p><strong>Email:</strong> {formData?.email}</p>
+      <p><strong>Phone:</strong> {formData?.phone}</p>
+      <p><strong>Date:</strong> {formData?.date}</p>
+      <p><strong>Booking Name:</strong> {details?.name}</p>
+      <p><strong>Total Price:</strong> {details?.price}</p>
     </div>
   );
 };
