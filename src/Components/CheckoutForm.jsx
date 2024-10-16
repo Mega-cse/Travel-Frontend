@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import { useNavigate } from 'react-router-dom';
 
@@ -6,6 +6,7 @@ const CheckoutForm = ({ formData, details }) => {
   const stripe = useStripe();
   const elements = useElements();
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -13,18 +14,21 @@ const CheckoutForm = ({ formData, details }) => {
       return;
     }
 
+    setLoading(true); // Start loading
+
     const { error, paymentMethod } = await stripe.createPaymentMethod({
       type: 'card',
       card: elements.getElement(CardElement),
     });
 
+    setLoading(false); // Stop loading
+
     if (error) {
       console.log('[error]', error);
+      // Optionally show error to the user
     } else {
-      // Handle payment method
       console.log('[PaymentMethod]', paymentMethod);
-      
-      // Assuming payment is successful, redirect to the booking confirmation page
+      // Navigate to booking success page after successful payment
       navigate('/booking-success', { state: { formData, details } });
     }
   };
@@ -34,7 +38,7 @@ const CheckoutForm = ({ formData, details }) => {
       <div style={{ marginBottom: '20px' }}>
         <CardElement />
       </div>
-      <button type="submit" disabled={!stripe} style={{
+      <button type="submit" disabled={!stripe || loading} style={{
         width: '100%',
         padding: '10px',
         borderRadius: '5px',
@@ -43,7 +47,7 @@ const CheckoutForm = ({ formData, details }) => {
         color: '#fff',
         cursor: 'pointer'
       }}>
-        Pay
+        {loading ? 'Processing...' : 'Pay'}
       </button>
     </form>
   );

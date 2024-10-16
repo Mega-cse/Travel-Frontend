@@ -44,8 +44,9 @@ const BookingSuccess = () => {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      navigate('/'); // Redirect to the header page after 5 seconds
-    }, 6000);    return () => clearTimeout(timer); // Cleanup the timer on unmount
+      navigate('/'); // Redirect to the header page after 6 seconds
+    }, 6000);
+    return () => clearTimeout(timer); // Cleanup the timer on unmount
   }, [navigate]);
 
   return (
